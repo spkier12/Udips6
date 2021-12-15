@@ -53,7 +53,9 @@ func main() {
 	}))
 
 	// User management
-	e.POST("/CreateJournal", CreateJournal)
+	e.POST("/CreateJournal", CreateJournal)              // Create a journal in database for selected user
+	e.POST("/UpdateJournal", UpdateJournal)              // Update the desired users journal with correct information
+	e.POST("/CreateIndicentJournal", AddIncidentJournal) // Create a incident in database with the desired user
 
 	e.Start(":5002")
 }
