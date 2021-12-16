@@ -17,6 +17,7 @@ import (
 var db *sql.DB
 var role = "udips6"
 var role2 = "udips6_update"
+var role3 = "udips6_admin"
 
 // var role3 = "udips6_admin"
 
@@ -53,9 +54,12 @@ func main() {
 	}))
 
 	// User management
-	e.POST("/CreateJournal", CreateJournal)              // Create a journal in database for selected user
-	e.POST("/UpdateJournal", UpdateJournal)              // Update the desired users journal with correct information
-	e.POST("/CreateIndicentJournal", AddIncidentJournal) // Create a incident in database with the desired user
+	e.POST("/CreateJournal", CreateJournal)               // Create a journal in database for selected user // role: udips6_update
+	e.POST("/UpdateJournal", UpdateJournal)               // Update the desired users journal with correct information // role: udips6_update
+	e.POST("/CreateIndicentJournal", AddIncidentJournal)  // Create a incident in database with the desired user // role: udips6_update
+	e.GET("/GetJournals/:journal", GetJournals)           // Get all journals // role: udips6
+	e.DELETE("/DeleteJournal", DeleteJournal)             // Delete Journal from database // role: udips6_admin
+	e.GET("/GetJournalContent/:user", GetJournalIncident) // Delete Journal from database // role: udips6_admin
 
 	e.Start(":5002")
 }
